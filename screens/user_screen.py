@@ -97,6 +97,7 @@ class UserScreen:
             self.title_buttons[x].config(text=f"{user['displayname']}", 
                                     font=("Encode Sans", font_size))
             self.action_buttons[x].config(image=assets.userscreen_userprofile)
+
         for x, title_button in enumerate(self.title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
                 assets.button_event_map(event, self.canvas,
@@ -113,15 +114,6 @@ class UserScreen:
             action_button.bind("<Leave>" , lambda event, x=x: 
                 assets.button_event_map(event, self.canvas,
                                         self.action_buttons_bg[x], assets.buttons["square"]))
-
-    def log_into_user(self, user_position: int) -> dict:
-        pass
-    
-    def view_user(self, user_position: int) -> dict:
-        pass
-    
-    def create_user(self) -> None:
-        pass
 
     def show_canvas(self) -> None:
         memory.all_users = check_for_users()
