@@ -8,6 +8,9 @@ from user_data import create_user, rename_user
 from assets import root, WINDOW_COLOR, get_font_size, bind_hover_animation
 import assets
 
+INPUT_CHAR_LIMIT = 14
+CHANGE_FONT_LIMIT = 12
+
 text_entry_font = font.Font(family="Encode Sans", size=20)
 
 class TextScreen:
@@ -16,8 +19,7 @@ class TextScreen:
         self.button_bgs = {}
         self.buttons = {}
 
-        self.canvas = Canvas(
-            root, bg=WINDOW_COLOR,
+        self.canvas = Canvas( root, bg=WINDOW_COLOR,
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
@@ -79,11 +81,11 @@ class TextScreen:
         def validate_input(current_input):
             if current_input == "":
                 return True
-            if len(current_input) > 12:  # TODO: This should be a constant
+            if len(current_input) > CHANGE_FONT_LIMIT:
                 text_entry_font.configure(size=16)
             else:
                 text_entry_font.configure(size=20)
-            return len(current_input) <= 14 # TODO: This should also probably be a constant
+            return len(current_input) <= INPUT_CHAR_LIMIT
         
         validate_cmd = root.register(validate_input)
 
